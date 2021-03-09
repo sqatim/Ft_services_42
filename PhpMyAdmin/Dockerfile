@@ -1,13 +1,11 @@
 FROM alpine:3.12
 RUN apk update
-RUN apk add nginx
+RUN apk add nginx && \
+    mkdir -p /run/nginx
 RUN apk add phpmyadmin php7-fpm
-RUN apk add openrc
-RUN openrc
-RUN touch /run/openrc/softlevel
+RUN apk add supervisor
 COPY ./srcs/nginx.conf .
-COPY ./srcs/script.sh .
-RUN chmod 777 script.sh
+COPY ./srcs/supervisord.conf ./etc/
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN chown -R www:www /var/lib/nginx
@@ -19,4 +17,4 @@ tar zxvf phpMyAdmin-5.0.2-all-languages.tar.gz &&\
 rm phpMyAdmin-5.0.2-all-languages.tar.gz &&\
 mv phpMyAdmin-5.0.2-all-languages phpmyadmin
 expose 5000
-CMD sh /script.sh
+CMD /usr/bin/supervisord -c /etc/supervisord.conf 

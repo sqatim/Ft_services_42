@@ -1,15 +1,15 @@
 FROM alpine:3.12
 RUN apk update
-RUN apk add nginx
-RUN apk add openrc 
-RUN openrc
-RUN touch /run/openrc/softlevel
-#RUN mkdir -p /run/nginx
-#CMD noginx -g 'daemon off;'
+RUN apk add supervisor
+RUN apk add nginx && \
+    mkdir -p /run/nginx
 COPY ./srcs/index.html .
 COPY ./srcs/nginx.conf .
-COPY ./script.sh .
-RUN chmod 777 script.sh
-expose 80
-expose 443
-CMD sh script.sh
+COPY ./srcs/supervisord.conf ./etc/
+RUN adduser -D -g 'www' www && \
+    mkdir /www && \
+    chown -R www:www /var/lib/nginx && \
+    chown -R www:www /www && \
+    mv ./nginx.conf /etc/nginx/nginx.conf && \
+    mv ./index.html /www
+CMD /usr/bin/supervisord -c /etc/supervisord.conf 
