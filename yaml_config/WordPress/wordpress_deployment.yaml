@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpresss
+  template:
+    metadata:
+      labels:
+        app: wordpresss
+    spec:
+      containers:
+        - name: wordpresspod
+          image: wordpress:service
+          ports:
+            - containerPort: 5050

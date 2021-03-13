@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: phpmyadmin-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginxs
+      app: phpmyadmins
   template:
     metadata:
       labels:
-        app: nginxs
+        app: phpmyadmins
     spec:
       containers:
-        - name: nginxpod
-          image: nginx:service
+        - name: phpmyadminpod
+          image: phpmyadmin:service
           ports:
-            - containerPort: 80
+            - containerPort: 5000
