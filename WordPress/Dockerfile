@@ -6,6 +6,7 @@ RUN apk add  php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl php7-xm
 RUN apk add supervisor
 COPY ./srcs/nginx.conf .
 COPY ./srcs/supervisord.conf ./etc/
+COPY ./srcs/wp-config.php .
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN chown -R www:www /var/lib/nginx
@@ -14,6 +15,9 @@ RUN mv ./nginx.conf /etc/nginx/nginx.conf
 WORKDIR /www/
 RUN wget http://wordpress.org/latest.tar.gz &&\
 tar -xzvf latest.tar.gz &&\
- rm latest.tar.gz
+ rm latest.tar.gz && \
+ rm wordpress/wp-config-sample.php && \
+ mv /wp-config.php ./wordpress/ && \
+ cd ..
 expose 5050
 CMD /usr/bin/supervisord -c /etc/supervisord.conf 

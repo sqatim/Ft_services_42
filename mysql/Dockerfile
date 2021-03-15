@@ -7,5 +7,5 @@ RUN chmod +x /tmp/stop-supervisor.sh
 RUN openrc
 RUN touch /run/openrc/softlevel
 COPY ./srcs/script.sh .
-#RUN sh script.sh
-CMD ./usr/bin/supervisord -c etc/supervisord.conf
+EXPOSE 3306
+CMD sh script.sh

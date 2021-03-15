@@ -16,7 +16,7 @@ spec:
         - name: mysqlpod
           image: mysql:service
           ports:
-            - containerPort: 80
+            - containerPort: 3306
           volumeMounts:
           - name: data
             mountPath: /var/lib/mysql

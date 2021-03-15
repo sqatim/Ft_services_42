@@ -1,6 +1,10 @@
 #!/bin/sh
 /etc/init.d/mariadb setup
 /etc/init.d/mariadb start
-mysql -u root -e "CREATE USER 'sqatim'@'localhost' IDENTIFIED BY '123456789' ; CREATE DATABASE wordpress; \
-GRANT ALL PRIVILEGES ON wordpress.* TO 'sqatim'@'localhost'; FLUSH PRIVILEGES"
-tail -f /dev/null
+mysql -u root -e "CREATE USER 'sqatim'@'%' IDENTIFIED BY '123456789' ; CREATE DATABASE wordpress; \
+GRANT ALL PRIVILEGES ON *.* TO 'sqatim'@'%'; FLUSH PRIVILEGES"
+
+sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
+
+/etc/init.d/mariadb stop
+./usr/bin/supervisord -c etc/supervisord.conf
