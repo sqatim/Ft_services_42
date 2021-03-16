@@ -3,6 +3,7 @@ RUN apk update
 RUN apk add mysql mysql-client openrc supervisor
 COPY ./supervisord.conf ./etc
 COPY ./stop-supervisor.sh ./tmp
+COPY ./srcs/wordpress.sql .
 RUN chmod +x /tmp/stop-supervisor.sh
 RUN openrc
 RUN touch /run/openrc/softlevel

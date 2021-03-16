@@ -1,5 +1,6 @@
 #!/bin/sh
-#minikube start
+# minikube start
+# eval $(minikube -p minikube docker-env)
 docker build -t nginx:service ./Nginx/
 docker build -t phpmyadmin:service ./PhpMyAdmin/
 docker build -t wordpress:service ./WordPress/
