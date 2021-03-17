@@ -1,6 +1,6 @@
 FROM alpine:3.12
 RUN apk update
-RUN apk add supervisor
+RUN apk add supervisor openssl
 RUN apk add nginx && \
     mkdir -p /run/nginx
 COPY ./srcs/index.html .
@@ -12,4 +12,5 @@ RUN adduser -D -g 'www' www && \
     chown -R www:www /www && \
     mv ./nginx.conf /etc/nginx/nginx.conf && \
     mv ./index.html /www
+RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -addext "subjectAltName=DNS:mydomain.com" -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt;
 CMD /usr/bin/supervisord -c /etc/supervisord.conf 
