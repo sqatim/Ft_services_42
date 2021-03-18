@@ -7,5 +7,6 @@ docker build -t wordpress:service ./WordPress/
 docker build -t ftps:service ./ftps/
 docker build -t mysql:service ./mysql/
 ./script/script_k8s.sh
-sleep 4
-minikube dashboard
+sleep 10
+echo "run minikube dashboard"
+# minikube dashboard

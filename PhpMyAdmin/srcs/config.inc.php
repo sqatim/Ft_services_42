@@ -9,3 +9,4 @@ $cfg['Servers'][$i]['AllowNoPassword'] = true;
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
 $cfg['TempDir'] = '/tmp';
+$cfg['PmaNoRelation_DisableWarning'] = true;
