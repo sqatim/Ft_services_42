@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdbs
+  template:
+    metadata:
+      labels:
+        app: influxdbs
+    spec:
+      containers:
+        - name: influxdbpod
+          image: influxdb:service
+          ports:
+            - containerPort: 8086
