@@ -17,3 +17,10 @@ spec:
           image: influxdb:service
           ports:
             - containerPort: 8086
+          volumeMounts:
+          - name: data
+            mountPath: /var/lib/influxdb
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+              claimName: influxdb-pv-claim

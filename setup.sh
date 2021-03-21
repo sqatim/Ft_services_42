@@ -1,6 +1,6 @@
 #!/bin/sh
 # minikube start
-# eval $(minikube -p minikube docker-env)
+eval $(minikube -p minikube docker-env)
 docker build -t nginx:service ./srcs/Nginx/
 docker build -t phpmyadmin:service ./srcs/PhpMyAdmin/
 docker build -t wordpress:service ./srcs/WordPress/
@@ -27,9 +27,10 @@ kubectl apply -f srcs/yaml_config/mysql/mysql_deployment.yaml
 kubectl apply -f srcs/yaml_config/mysql/mysql_service.yaml
 kubectl apply -f srcs/yaml_config/Grafana/grafana_deployment.yaml
 kubectl apply -f srcs/yaml_config/Grafana/grafana_service.yaml
+kubectl apply -f srcs/yaml_config/influxDB/influxdb_volume.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_deployment.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_service.yaml
 
-sleep 10
 echo "run minikube dashboard"
-# minikube dashboard
+sleep 120
+minikube dashboard
