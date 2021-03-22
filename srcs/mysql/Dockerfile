@@ -6,6 +6,7 @@ COPY ./srcs/supervisord.conf ./etc
 COPY ./srcs/stop-supervisor.sh ./tmp
 COPY ./srcs/wordpress.sql .
 RUN chmod +x /tmp/stop-supervisor.sh
+COPY ./srcs/telegraf.conf ./etc
 RUN openrc
 RUN touch /run/openrc/softlevel
 COPY ./srcs/script.sh .

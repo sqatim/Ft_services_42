@@ -8,6 +8,7 @@ RUN apk add supervisor telegraf
 COPY ./srcs/nginx.conf .
 COPY ./srcs/supervisord.conf ./etc/
 COPY ./srcs/stop-supervisor.sh ./tmp
+COPY ./srcs/telegraf.conf ./etc
 COPY ./srcs/wp-config.php .
 RUN adduser -D -g 'www' www
 RUN mkdir /www
@@ -21,5 +22,6 @@ tar -xzvf latest.tar.gz &&\
  rm wordpress/wp-config-sample.php && \
  mv /wp-config.php ./wordpress/ && \
  cd ..
+
 expose 5050
 CMD /usr/bin/supervisord -c /etc/supervisord.conf 

@@ -7,6 +7,7 @@ RUN apk add phpmyadmin php7-fpm supervisor telegraf
 COPY ./srcs/nginx.conf .
 COPY ./srcs/supervisord.conf ./etc/
 COPY ./srcs/stop-supervisor.sh ./tmp
+COPY ./srcs/telegraf.conf ./etc
 COPY ./srcs/config.inc.php .
 RUN adduser -D -g 'www' www
 RUN mkdir /www

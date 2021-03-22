@@ -4,6 +4,7 @@ RUN apk update
 RUN apk add vsftpd supervisor openssl telegraf
 COPY ./srcs/supervisord.conf ./etc/
 COPY ./srcs/stop-supervisor.sh ./tmp
+COPY ./srcs/telegraf.conf ./etc
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 RUN echo -e "123456789\n123456789" | adduser sqatim
 RUN echo "sqatim" | tee -a /etc/vsftpd.userlist
