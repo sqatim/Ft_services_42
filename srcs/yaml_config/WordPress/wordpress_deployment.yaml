@@ -13,7 +13,7 @@ spec:
         app: wordpresss
     spec:
       containers:
-        - name: wordpresspod
+        - name: wordpress
           image: wordpress:service
           ports:
             - containerPort: 5050

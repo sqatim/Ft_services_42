@@ -13,7 +13,7 @@ spec:
         app: phpmyadmins
     spec:
       containers:
-        - name: phpmyadminpod
+        - name: phpmyadmin
           image: phpmyadmin:service
           ports:
             - containerPort: 5000

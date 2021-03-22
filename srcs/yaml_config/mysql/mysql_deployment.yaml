@@ -13,7 +13,7 @@ spec:
         app: mysqls
     spec:
       containers:
-        - name: mysqlpod
+        - name: mysql
           image: mysql:service
           ports:
             - containerPort: 3306

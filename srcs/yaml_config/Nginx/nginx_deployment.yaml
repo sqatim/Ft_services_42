@@ -13,7 +13,7 @@ spec:
         app: nginxs
     spec:
       containers:
-        - name: nginxpod
+        - name: nginx
           image: nginx:service
           ports:
             - name: port80

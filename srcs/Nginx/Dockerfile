@@ -6,9 +6,10 @@ RUN apk add nginx && \
     mkdir -p /run/nginx
 COPY ./srcs/index.html .
 COPY ./srcs/nginx.conf .
-COPY ./srcs/supervisord.conf ./etc/
-COPY ./srcs/stop-supervisor.sh ./tmp
+COPY ./srcs/supervisord.conf /etc/
+COPY ./srcs/stop-supervisor.sh /tmp
 COPY ./srcs/telegraf.conf ./etc
+RUN chmod +x /tmp/stop-supervisor.sh
 RUN adduser -D -g 'www' www && \
     mkdir /www && \
     chown -R www:www /var/lib/nginx && \

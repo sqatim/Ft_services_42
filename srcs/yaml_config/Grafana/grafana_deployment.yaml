@@ -13,7 +13,7 @@ spec:
         app: grafanas
     spec:
       containers:
-        - name: grafanapod
+        - name: grafana
           image: grafana:service
           ports:
             - containerPort: 3000

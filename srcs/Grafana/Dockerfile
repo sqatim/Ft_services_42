@@ -9,8 +9,9 @@ RUN wget https://dl.grafana.com/oss/release/grafana-7.3.10.linux-amd64.tar.gz &&
 COPY srcs/supervisord.conf /grafana/
 COPY srcs/grafana.db /grafana/data/
 COPY srcs/sample.yaml /grafana/conf/provisioning/datasources
-COPY ./srcs/telegraf.conf ./etc
-COPY ./srcs/stop-supervisor.sh ./tmp
+COPY ./srcs/telegraf.conf /etc
+COPY ./srcs/stop-supervisor.sh /tmp
+RUN chmod +x /tmp/stop-supervisor.sh
 WORKDIR /grafana/
 expose 3000
 CMD /usr/bin/supervisord -c /grafana/supervisord.conf 

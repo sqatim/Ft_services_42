@@ -13,7 +13,7 @@ spec:
         app: influxdbs
     spec:
       containers:
-        - name: influxdbpod
+        - name: influxdb
           image: influxdb:service
           ports:
             - containerPort: 8086

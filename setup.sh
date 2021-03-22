@@ -1,5 +1,7 @@
 #!/bin/sh
-# minikube start
+minikube start
+echo "export variables"
+sleep 2
 eval $(minikube -p minikube docker-env)
 docker build -t nginx:service ./srcs/Nginx/
 docker build -t phpmyadmin:service ./srcs/PhpMyAdmin/
@@ -32,5 +34,5 @@ kubectl apply -f srcs/yaml_config/influxDB/influxdb_deployment.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_service.yaml
 
 echo "run minikube dashboard"
-sleep 120
+sleep 80
 minikube dashboard

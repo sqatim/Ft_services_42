@@ -13,7 +13,7 @@ spec:
         app: ftpss
     spec:
       containers:
-        - name: ftpspod
+        - name: ftps
           image: ftps:service
           ports:
             - containerPort: 21
