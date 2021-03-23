@@ -34,5 +34,5 @@ kubectl apply -f srcs/yaml_config/influxDB/influxdb_deployment.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_service.yaml
 
 echo "run minikube dashboard"
-sleep 80
+sleep 120
 minikube dashboard
