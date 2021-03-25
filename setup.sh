@@ -1,6 +1,6 @@
 #!/bin/sh
 minikube start
-echo "export variables"
+echo "===========================   Build Images    ==========================="
 sleep 2
 eval $(minikube -p minikube docker-env)
 docker build -t nginx:service ./srcs/Nginx/
@@ -10,7 +10,7 @@ docker build -t ftps:service ./srcs/ftps/
 docker build -t mysql:service ./srcs/mysql/
 docker build -t grafana:service ./srcs/Grafana/
 docker build -t influxdb:service ./srcs/influxDB/
-echo "deployment"
+echo "===========================   Starting Kubernetes  ==========================="
 sleep 3
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
@@ -33,6 +33,6 @@ kubectl apply -f srcs/yaml_config/influxDB/influxdb_volume.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_deployment.yaml
 kubectl apply -f srcs/yaml_config/influxDB/influxdb_service.yaml
 
-echo "run minikube dashboard"
+echo "===========================  Run Minikube Dashboard   ==========================="
 sleep 120
 minikube dashboard

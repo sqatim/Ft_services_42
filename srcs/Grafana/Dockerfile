@@ -15,5 +15,3 @@ RUN chmod +x /tmp/stop-supervisor.sh
 WORKDIR /grafana/
 expose 3000
 CMD /usr/bin/supervisord -c /grafana/supervisord.conf 
-
-#apk add --update binutils | readelf -l /grafana-7.3.10/bin/grafana-server | grep "program interpreter"

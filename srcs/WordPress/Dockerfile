@@ -23,6 +23,5 @@ tar -xzvf latest.tar.gz &&\
  rm wordpress/wp-config-sample.php && \
  mv /wp-config.php ./wordpress/ && \
  cd ..
-
 expose 5050
 CMD /usr/bin/supervisord -c /etc/supervisord.conf 
